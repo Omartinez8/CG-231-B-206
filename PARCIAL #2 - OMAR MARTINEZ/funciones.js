@@ -9,7 +9,7 @@ var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x0000);
 
 var size = 180;
-var arrowSize = 8;
+var arrowSize = 80;
 var divisions = 100;
 var origin = new THREE.Vector3( 0, 0, 0 );
 var x = new THREE.Vector3( 1, 0, 0 );
@@ -39,9 +39,9 @@ scene.add(gridHelper);
 
 //CAMARA
 var camera = new THREE.PerspectiveCamera(80, WIDTH / HEIGHT);
-camera.position.z = 10;
-camera.position.x = 5;
-camera.position.y = 6;
+camera.position.z = 45;
+camera.position.x = 15;
+camera.position.y = 16;
 
 camera.rotation.set(0, -0.5, 0);
 
@@ -56,43 +56,54 @@ document.body.appendChild(renderer.domElement);
 //CONTROL MOUSE
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+//RADIO DE LA ESFERA 
+var R = 10;
+var t = R*3;
 
-var R = 5;
+//GEOMETRIA DE LA ESFERA 
 var geometry1 = new THREE.SphereGeometry(R);
 var material = new THREE.MeshBasicMaterial({color: 0xFF4000});
 var Sphere = new THREE.Mesh(geometry1, material);
 
-//ESCALADO
+        
 
-var Sx = 0.5;
-var Sy = 0.5;
-var Sz = 3;
+    //ESCALADO
+    //VALORES DE ESCALADO SEGUN LOS EJES
+    var Sx = 0.5;
+    var Sy = 0.5;
+    var Sz = 3;
 
-Sphere.scale.x=Sx
-Sphere.scale.y=Sy
-Sphere.scale.z=Sz
+        Sphere.scale.x=Sx
+        Sphere.scale.y=Sy
+        Sphere.scale.z=Sz
 
-//TRASLACION
+        
+    //TRASLACION
+    //VALORES DE TRASLACION SEGUN LOS EJES
+    var Tx = t;
+    var Ty = 0;
+    var Tz = 0;
 
-var Tx = 0;
-var Ty = 1.5;
-var Tz = 0;
+        Sphere.translateX(Tx);
+        Sphere.translateY(Ty);
+        Sphere.translateZ(Tz);
 
-//Sphere.traslate.x=Tx
-//Sphere.traslate.y=Ty
-//Sphere.traslate.z=Tz
+    //ROTACION
+    //VALORES DE ROTACION SEGUN LOS EJES
+    var Rx = 0;
+    var Ry = Math.PI/2;
+    var Rz = Math.PI/6;
 
-//ROTACION
 
-//var Rx = Math.PI/2;
-var Ry = Math.PI/2;
-//var Rz = Math.PI/4;
+        //Sphere.rotation.x=Rx;
+        Sphere.rotation.y=Ry;
+        Sphere.rotation.z=Rz;
+        
 
-//Sphere.rotation.x=Rx
-Sphere.rotation.y=Ry
-//Sphere.rotation.z=Rz
+            
 
-scene.add(Sphere)
+
+    scene.add(Sphere)
 
 
 // FUNCION RENDERER 
